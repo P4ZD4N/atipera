@@ -6,11 +6,11 @@ Simple API, which allows you to retrieve information about non-fork GitHub repos
 
 - [Tech stack](#tech-stack)
 - [Features](#features)
-- [Setup](#setup)
-- [Configuration](#configuration)
+- [Requirements](#requirements)
+- [Run](#run)
 - [Usage](#usage)
-- [Example Output](#example-output)
-- [License](#license)
+- [Errors](#errors)
+- [Running tests](#running-tests)
 
 ## Tech Stack
 
