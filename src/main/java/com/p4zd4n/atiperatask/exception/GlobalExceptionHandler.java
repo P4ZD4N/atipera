@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.client.HttpClientErrorException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -56,5 +57,20 @@ public class GlobalExceptionHandler {
                 .build();
 
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(HttpClientErrorException.Forbidden.class)
+    public ResponseEntity<ErrorResponse> handleHttpClientErrorException(
+            HttpClientErrorException.Forbidden exception
+    ) {
+        logger.warn("Handling HttpClientErrorException.Forbidden: {}", exception.getMessage());
+
+        ErrorResponse response = ErrorResponse.builder()
+                .status(HttpStatus.FORBIDDEN.value())
+                .message("Rate limit exceeded! Generate token on https://github.com/settings/tokens and fill " +
+                        "github.auth.token property with your token in application.properties file to increase limits!")
+                .build();
+
+        return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
     }
 }
