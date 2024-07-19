@@ -40,7 +40,7 @@ Simple API, which allows you to retrieve information about non-fork GitHub repos
 Clone the project
 
 ```bash
-git clone hhttps://github.com/P4ZD4N/atipera.git
+git clone https://github.com/P4ZD4N/atipera.git
 ```
 
 Navigate the project directory
