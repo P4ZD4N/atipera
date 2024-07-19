@@ -41,9 +41,9 @@ public class GitHubController {
         if (repositoryResponses.isEmpty()) {
             logger.warn("No repositories found for user: {}", username);
             throw new NoRepositoriesFoundException(username);
-        } else {
-            logger.info("Returning {} repositories for user: {}", repositoryResponses.size(), username);
-            return new ResponseEntity<>(repositoryResponses, HttpStatus.OK);
         }
+
+        logger.info("Returning {} repositories for user: {}", repositoryResponses.size(), username);
+        return new ResponseEntity<>(repositoryResponses, HttpStatus.OK);
     }
 }
