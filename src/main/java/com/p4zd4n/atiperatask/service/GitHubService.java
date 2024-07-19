@@ -5,7 +5,7 @@ import com.p4zd4n.atiperatask.model.Branch;
 import com.p4zd4n.atiperatask.model.LastCommit;
 import com.p4zd4n.atiperatask.model.Repository;
 import com.p4zd4n.atiperatask.response.RepositoryResponse;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -14,17 +14,22 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@AllArgsConstructor
 @Service
 public class GitHubService {
 
-    private static final String API_URL = "https://api.github.com";
+    @Value("${github.api.url}")
+    private String apiUrl;
 
-    private RestTemplate restTemplate;
+    private final RestTemplate restTemplate;
+
+    public GitHubService(RestTemplate restTemplate, @Value("${github.api.url}") String apiUrl) {
+        this.restTemplate = restTemplate;
+        this.apiUrl = apiUrl;
+    }
 
     public List<RepositoryResponse> getRepositories(String username) {
 
-        String url = API_URL + "/users/" + username + "/repos?type=all";
+        String url = apiUrl + "/users/" + username + "/repos?type=all";
 
         try {
             Repository[] repositories = restTemplate.getForObject(url, Repository[].class);
@@ -43,13 +48,13 @@ public class GitHubService {
 
     private List<Branch> getRepositoryBranches(String username, String repository) {
 
-        String url = API_URL + "/repos/" + username + "/" + repository + "/branches";
+        String url = apiUrl + "/repos/" + username + "/" + repository + "/branches";
 
         Branch[] branches = restTemplate.getForObject(url, Branch[].class);
 
         return Arrays.stream(branches)
                 .map(branch -> {
-                    String commitUrl = API_URL + "/repos/" + username + "/" + repository + "/commits/" + branch.name();
+                    String commitUrl = apiUrl + "/repos/" + username + "/" + repository + "/commits/" + branch.name();
                     LastCommit lastCommit = restTemplate.getForObject(commitUrl, LastCommit.class);
                     return new Branch(branch.name(), lastCommit);
                 })

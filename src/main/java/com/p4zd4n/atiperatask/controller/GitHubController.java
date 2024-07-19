@@ -14,6 +14,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -28,7 +29,7 @@ public class GitHubController {
     public ResponseEntity<List<RepositoryResponse>> getRepositories(
             @PathVariable String username,
             @RequestHeader(HttpHeaders.ACCEPT) String accept
-    ) throws HttpMediaTypeNotSupportedException {
+    ) throws HttpMediaTypeNotSupportedException, URISyntaxException {
         logger.info("Received request to get repositories for user: {}", username);
 
         if (!accept.equals(MediaType.APPLICATION_JSON_VALUE)) {
