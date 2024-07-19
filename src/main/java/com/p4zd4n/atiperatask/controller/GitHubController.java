@@ -29,7 +29,7 @@ public class GitHubController {
     public ResponseEntity<List<RepositoryResponse>> getRepositories(
             @PathVariable String username,
             @RequestHeader(HttpHeaders.ACCEPT) String accept
-    ) throws HttpMediaTypeNotSupportedException, URISyntaxException {
+    ) throws HttpMediaTypeNotSupportedException {
         logger.info("Received request to get repositories for user: {}", username);
 
         if (!accept.equals(MediaType.APPLICATION_JSON_VALUE)) {
