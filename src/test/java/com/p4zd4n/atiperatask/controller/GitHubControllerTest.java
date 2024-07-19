@@ -1,6 +1,5 @@
-package com.p4zd4n.atiperatask;
+package com.p4zd4n.atiperatask.controller;
 
-import com.p4zd4n.atiperatask.controller.GitHubController;
 import com.p4zd4n.atiperatask.exception.NoRepositoriesFoundException;
 import com.p4zd4n.atiperatask.response.RepositoryResponse;
 import com.p4zd4n.atiperatask.service.GitHubService;
@@ -11,7 +10,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;

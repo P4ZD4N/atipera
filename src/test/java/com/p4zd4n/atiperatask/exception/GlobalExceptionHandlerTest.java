@@ -1,8 +1,5 @@
-package com.p4zd4n.atiperatask;
+package com.p4zd4n.atiperatask.exception;
 
-import com.p4zd4n.atiperatask.exception.GlobalExceptionHandler;
-import com.p4zd4n.atiperatask.exception.NoRepositoriesFoundException;
-import com.p4zd4n.atiperatask.exception.UserNotFoundException;
 import com.p4zd4n.atiperatask.response.ErrorResponse;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpStatus;

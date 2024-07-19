@@ -1,4 +1,4 @@
-package com.p4zd4n.atiperatask;
+package com.p4zd4n.atiperatask.service;
 
 import com.p4zd4n.atiperatask.exception.UserNotFoundException;
 import com.p4zd4n.atiperatask.model.Branch;
@@ -6,7 +6,6 @@ import com.p4zd4n.atiperatask.model.LastCommit;
 import com.p4zd4n.atiperatask.model.Owner;
 import com.p4zd4n.atiperatask.model.Repository;
 import com.p4zd4n.atiperatask.response.RepositoryResponse;
-import com.p4zd4n.atiperatask.service.GitHubService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
