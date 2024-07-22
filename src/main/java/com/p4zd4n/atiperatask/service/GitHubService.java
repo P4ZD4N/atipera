@@ -5,6 +5,8 @@ import com.p4zd4n.atiperatask.model.Branch;
 import com.p4zd4n.atiperatask.model.LastCommit;
 import com.p4zd4n.atiperatask.model.Repository;
 import com.p4zd4n.atiperatask.response.RepositoryResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
@@ -22,6 +24,8 @@ public class GitHubService {
 
     private final RestTemplate restTemplate;
 
+    private static final Logger logger = LoggerFactory.getLogger(GitHubService.class);
+
     public GitHubService(RestTemplate restTemplate, @Value("${github.api.url}") String apiUrl) {
         this.restTemplate = restTemplate;
         this.apiUrl = apiUrl;
@@ -33,6 +37,8 @@ public class GitHubService {
 
         try {
             Repository[] repositories = restTemplate.getForObject(url, Repository[].class);
+
+            logger.info("Fetching repositories for user: {}", username);
 
             return Arrays.stream(repositories)
                     .filter(repository -> !repository.isForked())
@@ -56,6 +62,7 @@ public class GitHubService {
                 .map(branch -> {
                     String commitUrl = apiUrl + "/repos/" + username + "/" + repository + "/commits/" + branch.name();
                     LastCommit lastCommit = restTemplate.getForObject(commitUrl, LastCommit.class);
+                    logger.info("Fetching branches for repository: {}", repository);
                     return new Branch(branch.name(), lastCommit);
                 })
                 .collect(Collectors.toList());
