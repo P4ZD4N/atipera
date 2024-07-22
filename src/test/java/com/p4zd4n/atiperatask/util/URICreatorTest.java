@@ -28,7 +28,7 @@ public class URICreatorTest {
     }
 
     @Test
-    void createURI_emptyPath_returnsApiUrlWithoutPath() {
+    void createURI_emptyPath_apiUrlWithoutPath() {
 
         URI uri = URICreator.createURI("https://api.github.com/", "");
 
