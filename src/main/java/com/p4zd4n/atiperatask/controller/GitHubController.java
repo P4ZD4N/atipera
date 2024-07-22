@@ -22,7 +22,7 @@ import java.util.List;
 public class GitHubController {
 
     private GitHubService gitHubService;
-    private final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private final Logger logger = LoggerFactory.getLogger(GitHubController.class);
 
     @GetMapping("/repositories/{username}")
     public ResponseEntity<List<RepositoryResponse>> getRepositories(
