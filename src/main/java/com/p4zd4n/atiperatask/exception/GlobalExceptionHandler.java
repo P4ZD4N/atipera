@@ -19,7 +19,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleUserNotFoundException(
             UserNotFoundException exception
     ) {
-        logger.warn("Handling UserNotFoundException: {}", exception.getMessage());
+        logger.error("Handling UserNotFoundException: {}", exception.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .status(HttpStatus.NOT_FOUND.value())
@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpMediaTypeNotSupportedException(
             HttpMediaTypeNotSupportedException exception
     ) {
-        logger.warn("Handling HttpMediaTypeNotSupportedException: {}", exception.getMessage());
+        logger.error("Handling HttpMediaTypeNotSupportedException: {}", exception.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .status(HttpStatus.UNSUPPORTED_MEDIA_TYPE.value())
@@ -49,7 +49,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleNoRepositoriesFoundException(
             NoRepositoriesFoundException exception
     ) {
-        logger.warn("Handling NoRepositoriesFoundException: {}", exception.getMessage());
+        logger.error("Handling NoRepositoriesFoundException: {}", exception.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .status(HttpStatus.NOT_FOUND.value())
@@ -63,7 +63,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleHttpClientErrorException(
             HttpClientErrorException.Forbidden exception
     ) {
-        logger.warn("Handling HttpClientErrorException.Forbidden: {}", exception.getMessage());
+        logger.error("Handling HttpClientErrorException.Forbidden: {}", exception.getMessage());
 
         ErrorResponse response = ErrorResponse.builder()
                 .status(HttpStatus.FORBIDDEN.value())
