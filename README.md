@@ -67,12 +67,6 @@ If Maven is installed globally:
 mvn spring-boot:run
 ```
 
-Alternatively, you can build the project and run the JAR file:
-
-```bash
-mvn clean package
-java -jar target/your-app-name.jar
-```
 ## Usage
 
 #### Base URL
